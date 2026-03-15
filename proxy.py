@@ -3,17 +3,8 @@ from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
-
-# 1. Defina quem tem permissão para acessar o seu proxy
-# Substitua 'seu-usuario' pelo seu nome de usuário real do GitHub
-DOMINIOS_PERMITIDOS = [
-    "https://geornalista.github.io",  # O seu PWA em produção
-    "http://127.0.0.1:5500",          # Opcional: Para você continuar testando localmente (ex: Live Server)
-    "http://localhost:5500"           # Opcional: Variação comum do localhost
-]
-
-# 2. Aplique a regra de segurança no CORS
-CORS(app, origins=DOMINIOS_PERMITIDOS)
+# O CORS(app) é a mágica que permite o seu front-end ler a resposta sem ser bloqueado
+CORS(app) 
 
 @app.route('/', methods=['GET'])
 def proxy():
